@@ -2,7 +2,18 @@
 
 ## Description
 
+Work in progress. Started 05/26/2021.
+
+[Deployed Application](https://spreston4.github.io/work-day-scheduler/)
+
+[GitHub Repo](https://github.com/spreston4/work-day-scheduler)
+
 ## Technologies Used
+HTML
+CSS
+JavaScript / jQuery
+Web APIs
+Moment API
 
 ## How To
 
