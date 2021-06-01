@@ -1,6 +1,6 @@
 // DECLARE the 'currentHour'
 // var currentHour = moment().hour();
-var currentHour = 13;                  // Testing
+var currentHour = 11;                  // Testing
 
 // DECLARE the 'currentDay'
 var currentDay = moment().format('dddd [, ] MMMM do YYYY');
@@ -74,44 +74,77 @@ function renderSchedule() {
         var textContent = timeBlocks[i].text;
         var textStorage = timeBlocks[i].storageValue;
         var blockTimeValue = timeBlocks[i].timeValue;
+        var conditionalFormat = '';
 
-        // Create div to hold row 
-        var scheduleDivEl = $('<form>');
-        scheduleDivEl.addClass('time-block row');
-        containerEl.append(scheduleDivEl);
+        // Compare 'currentHour' to 'timeValue' to determin formating
+        if (currentHour == blockTimeValue) {
 
-        // Display time block
-        var hourDisplayEl = $('<p>');
-        hourDisplayEl.addClass('hour');
-        hourDisplayEl.text(textContent);
-        scheduleDivEl.append(hourDisplayEl);
+            conditionalFormat = 'present';
 
-        // Display text area
-        var textAreaEl = $('<textarea>');
-        textAreaEl.attr('id', textStorage);
+        } else if ( currentHour > blockTimeValue) {
 
-            // Compare 'currentHour' to 'timeValue' to determine formatting
-            if (currentHour == blockTimeValue) {
+            conditionalFormat = 'past';
 
-                textAreaEl.addClass('present');
+        } else {
 
-            } else if ( currentHour > blockTimeValue) {
+            conditionalFormat = 'future';
 
-                textAreaEl.addClass('past');
+        };
 
-            } else {
+        // Create form for each row
+        var schedulerowEl = $(
+            `<form class = "time-block row"> 
+                <p class = "hour">
+                    ${textContent}
+                </p>
+                <textarea id = "${textStorage}" class = "${conditionalFormat}">
+                </textarea>
+                <button class = "saveBtn">
+                    Save
+                </button>
+            </form>`
+        );
 
-                textAreaEl.addClass('future');
+        // Append row to container
+        containerEl.append(schedulerowEl);
 
-            };
+        // // Create div to hold row 
+        // var scheduleDivEl = $('<form>');
+        // scheduleDivEl.addClass('time-block row');
+        // containerEl.append(scheduleDivEl);
 
-        scheduleDivEl.append(textAreaEl);
+        // // Display time block
+        // var hourDisplayEl = $('<p>');
+        // hourDisplayEl.addClass('hour');
+        // hourDisplayEl.text(textContent);
+        // scheduleDivEl.append(hourDisplayEl);
 
-        // Display button
-        var displayButtonEl = $('<button>');
-        displayButtonEl.addClass('saveBtn');
-        displayButtonEl.text('Save');
-        scheduleDivEl.append(displayButtonEl);
+        // // Display text area
+        // var textAreaEl = $('<textarea>');
+        // textAreaEl.attr('id', textStorage);
+
+        //     // Compare 'currentHour' to 'timeValue' to determine formatting
+        //     if (currentHour == blockTimeValue) {
+
+        //         textAreaEl.addClass('present');
+
+        //     } else if ( currentHour > blockTimeValue) {
+
+        //         textAreaEl.addClass('past');
+
+        //     } else {
+
+        //         textAreaEl.addClass('future');
+
+        //     };
+
+        // scheduleDivEl.append(textAreaEl);
+
+        // // Display button
+        // var displayButtonEl = $('<button>');
+        // displayButtonEl.addClass('saveBtn');
+        // displayButtonEl.text('Save');
+        // scheduleDivEl.append(displayButtonEl);
 
     }
 
