@@ -2,7 +2,7 @@
 
 ## Description
 
-Work in progress. Started 05/26/2021.
+Work in progress. 
 
 [Deployed Application](https://spreston4.github.io/work-day-scheduler/)
 
